@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Звягель Онлайн — локальні оголошення</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Manrope',sans-serif;background:#F5F3EE;color:#1A1917;min-height:100vh}
+  header{background:#1A1917;padding:0 1.5rem;height:80px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Unbounded',sans-serif;font-size:18px;font-weight:700;color:#F5F3EE;letter-spacing:-0.02em}
+  .logo span{color:#C8F135}
+  .hero{background:#1A1917;padding:3rem 1.5rem 2.5rem;text-align:center}
+  .hero h1{font-family:'Unbounded',sans-serif;font-size:38px;font-weight:700;color:#C8F135;line-height:1.2;margin-bottom:0;letter-spacing:-0.02em}
+  .hero h1 span{color:rgba(245,243,238,0.7);display:block;font-size:20px;font-weight:600;letter-spacing:0.02em;margin-top:8px;font-family:'Manrope',sans-serif}
+  .hero p{font-size:15px;color:rgba(245,243,238,0.6);max-width:460px;margin:0 auto}
+  .sites{padding:2rem 1.5rem;max-width:800px;margin:0 auto}
+  .sites-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#B0ADA5;margin-bottom:1.25rem;text-align:center}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+  .site-card{background:#fff;border:1px solid rgba(26,25,23,0.1);border-radius:12px;padding:1.25rem;text-decoration:none;color:#1A1917;display:flex;flex-direction:column;gap:10px;transition:transform 0.15s,box-shadow 0.15s,border-color 0.15s}
+  .site-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.08);border-color:rgba(26,25,23,0.2)}
+  .site-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+  .site-name{font-family:'Unbounded',sans-serif;font-size:13px;font-weight:600;letter-spacing:-0.01em}
+  .site-desc{font-size:12px;color:#7A7770;line-height:1.5}
+  .site-url{font-size:11px;color:#B0ADA5;margin-top:auto}
+  .taxi{background:#111;border-radius:16px;padding:1.5rem;margin:0 1.5rem 2rem;max-width:800px;margin-left:auto;margin-right:auto;border:2px solid #C8F135;display:flex;align-items:center;gap:1.25rem;cursor:pointer;text-decoration:none;transition:transform 0.15s}
+  .taxi:hover{transform:translateY(-2px)}
+  .taxi-logo{font-family:'Unbounded',sans-serif;font-size:20px;font-weight:900;color:#C8F135;flex-shrink:0}
+  .taxi-logo span{color:#fff}
+  .taxi-text{flex:1}
+  .taxi-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:3px}
+  .taxi-sub{font-size:12px;color:#888}
+  .taxi-btn{background:#C8F135;color:#111;font-size:12px;font-weight:900;padding:8px 14px;border-radius:8px;font-family:'Unbounded',sans-serif;white-space:nowrap}
+  footer{background:#1A1917;color:rgba(245,243,238,0.4);padding:1.25rem 1.5rem;font-size:12px;text-align:center}
+  footer a{color:rgba(245,243,238,0.4);text-decoration:none}
+  @media(max-width:480px){
+    .hero h1{font-size:22px}
+    .grid{grid-template-columns:1fr 1fr}
+    .site-card{padding:1rem}
+    .site-name{font-size:11px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div style="width:100%;text-align:center">
+    <div class="logo">ZVYAGEL<span>.</span>ONLINE</div>
+    <div style="font-size:11px;color:rgba(245,243,238,0.45);font-weight:500;margin-top:2px;letter-spacing:0.05em">Місцеві оголошення</div>
+  </div>
+</header>
+
+<div class="hero" style="padding:2rem 1rem">
+  <div style="display:flex;align-items:center;justify-content:center;gap:12px">
+
+    <!-- БАНЕР ЛІВИЙ -->
+    <a href="https://novotaxi.online/" target="_blank" style="flex-shrink:0;width:117px;background:#111;border:2px solid #C8F135;border-radius:12px;padding:14px 8px;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:5px">
+      <svg width="46" height="22" viewBox="0 0 120 60">
+        <rect x="10" y="20" width="100" height="32" rx="6" fill="#C8F135"/>
+        <rect x="22" y="10" width="76" height="28" rx="5" fill="#C8F135"/>
+        <rect x="28" y="14" width="26" height="20" rx="3" fill="#111" opacity="0.7"/>
+        <rect x="66" y="14" width="26" height="20" rx="3" fill="#111" opacity="0.7"/>
+        <circle cx="32" cy="54" r="10" fill="#222"/><circle cx="32" cy="54" r="6" fill="#444"/><circle cx="32" cy="54" r="3" fill="#C8F135"/>
+        <circle cx="88" cy="54" r="10" fill="#222"/><circle cx="88" cy="54" r="6" fill="#444"/><circle cx="88" cy="54" r="3" fill="#C8F135"/>
+      </svg>
+      <div style="font-size:10px;font-weight:900;color:#C8F135;font-family:'Unbounded',sans-serif;text-align:center;line-height:1.2">NOVO<br>TAXI</div>
+      <div style="font-size:9px;color:#888;text-align:center">5хв · 24/7</div>
+      <div style="background:#C8F135;color:#111;font-size:9px;font-weight:900;padding:4px 8px;border-radius:4px;font-family:'Unbounded',sans-serif">ЗАМОВИТИ</div>
+    </a>
+
+    <!-- ЗАГОЛОВОК -->
+    <div style="flex:1;text-align:center">
+      <h1>ЗВЯГЕЛЬ<span>Місцеві оголошення</span></h1>
+    </div>
+
+    <!-- БАНЕР ПРАВИЙ -->
+    <a href="https://novotaxi.online/" target="_blank" style="flex-shrink:0;width:117px;background:#111;border:2px solid #C8F135;border-radius:12px;padding:14px 8px;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:5px">
+      <svg width="46" height="22" viewBox="0 0 120 60">
+        <rect x="10" y="20" width="100" height="32" rx="6" fill="#C8F135"/>
+        <rect x="22" y="10" width="76" height="28" rx="5" fill="#C8F135"/>
+        <rect x="28" y="14" width="26" height="20" rx="3" fill="#111" opacity="0.7"/>
+        <rect x="66" y="14" width="26" height="20" rx="3" fill="#111" opacity="0.7"/>
+        <circle cx="32" cy="54" r="10" fill="#222"/><circle cx="32" cy="54" r="6" fill="#444"/><circle cx="32" cy="54" r="3" fill="#C8F135"/>
+        <circle cx="88" cy="54" r="10" fill="#222"/><circle cx="88" cy="54" r="6" fill="#444"/><circle cx="88" cy="54" r="3" fill="#C8F135"/>
+      </svg>
+      <div style="font-size:10px;font-weight:900;color:#C8F135;font-family:'Unbounded',sans-serif;text-align:center;line-height:1.2">NOVO<br>TAXI</div>
+      <div style="font-size:9px;color:#888;text-align:center">5хв · 24/7</div>
+      <div style="background:#C8F135;color:#111;font-size:9px;font-weight:900;padding:4px 8px;border-radius:4px;font-family:'Unbounded',sans-serif">ЗАМОВИТИ</div>
+    </a>
+
+  </div>
+</div>
+
+
+
+<div class="sites">
+  <div class="sites-title">Оберіть розділ</div>
+  <div class="grid">
+
+    <a href="https://shina.zvyagel.online" class="site-card">
+      <div class="site-icon" style="background:#EAF4EE">🔄</div>
+      <div>
+        <div class="site-name">Шини та Диски</div>
+        <div class="site-desc">Купівля та продаж шин, дисків та авто-послуги</div>
+      </div>
+      <div class="site-url">shina.zvyagel.online</div>
+    </a>
+
+    <a href="https://avto.zvyagel.online" class="site-card">
+      <div class="site-icon" style="background:#E8F0FA">🚗</div>
+      <div>
+        <div class="site-name">Авто</div>
+        <div class="site-desc">Продаж та купівля автомобілів у Звягелі</div>
+      </div>
+      <div class="site-url">avto.zvyagel.online</div>
+    </a>
+
+    <a href="https://nieruhomist.zvyagel.online" class="site-card">
+      <div class="site-icon" style="background:#FDF3E0">🏠</div>
+      <div>
+        <div class="site-name">Нерухомість</div>
+        <div class="site-desc">Квартири, будинки, ділянки — продаж та оренда</div>
+      </div>
+      <div class="site-url">nieruhomist.zvyagel.online</div>
+    </a>
+
+    <a href="https://mebli.zvyagel.online" class="site-card">
+      <div class="site-icon" style="background:#F2ECF9">🛋️</div>
+      <div>
+        <div class="site-name">Меблі та Техніка</div>
+        <div class="site-desc">Меблі, побутова техніка та опалення</div>
+      </div>
+      <div class="site-url">mebli.zvyagel.online</div>
+    </a>
+
+    <a href="https://igrashki.zvyagel.online" class="site-card">
+      <div class="site-icon" style="background:#FFF0F0">🧸</div>
+      <div>
+        <div class="site-name">Дитячі товари</div>
+        <div class="site-desc">Іграшки, коляски, одяг та все для дітей</div>
+      </div>
+      <div class="site-url">igrashki.zvyagel.online</div>
+    </a>
+
+    <div class="site-card" style="background:#F5F3EE;border-style:dashed;cursor:default;opacity:0.6">
+      <div class="site-icon" style="background:#EDEAE3">➕</div>
+      <div>
+        <div class="site-name">Скоро</div>
+        <div class="site-desc">Нові розділи у розробці</div>
+      </div>
+      <div class="site-url">zvyagel.online</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- WIDGETS -->
+<div style="background:#1A1917;padding:0 1.5rem 1.5rem">
+  <div style="max-width:800px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+
+    <!-- ПОГОДА -->
+    <div style="background:rgba(245,243,238,0.07);border-radius:12px;padding:1rem;cursor:pointer" onclick="loadWeather()">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(245,243,238,0.4);margin-bottom:8px">🌤 Погода · Звягель</div>
+      <div id="weatherWidget">
+        <div style="font-size:32px;font-weight:700;color:#F5F3EE;font-family:'Unbounded',sans-serif" id="wTemp">--°</div>
+        <div style="font-size:12px;color:rgba(245,243,238,0.5);margin-top:3px" id="wDesc">Завантаження...</div>
+        <div style="display:flex;gap:10px;margin-top:8px;font-size:11px;color:rgba(245,243,238,0.4)" id="wDetails"></div>
+      </div>
+    </div>
+
+    <!-- КУРС ВАЛЮТ -->
+    <div style="background:rgba(245,243,238,0.07);border-radius:12px;padding:1rem">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(245,243,238,0.4);margin-bottom:8px">💱 Курс валют</div>
+      <div id="currencyWidget">
+        <div style="display:flex;flex-direction:column;gap:6px" id="currencyRates">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:13px;color:rgba(245,243,238,0.6)">🇺🇸 USD</span>
+            <span style="font-size:15px;font-weight:700;color:#C8F135;font-family:'Unbounded',sans-serif" id="rateUSD">--</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:13px;color:rgba(245,243,238,0.6)">🇪🇺 EUR</span>
+            <span style="font-size:15px;font-weight:700;color:#C8F135;font-family:'Unbounded',sans-serif" id="rateEUR">--</span>
+          </div>
+          <div style="font-size:10px;color:rgba(245,243,238,0.25);margin-top:2px" id="rateDate"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- НОВИНИ -->
+    <div style="background:rgba(245,243,238,0.07);border-radius:12px;padding:1rem;grid-column:1/-1">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(245,243,238,0.4);margin-bottom:10px">📰 Новини України</div>
+      <div id="newsWidget" style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:12px;color:rgba(245,243,238,0.4)">Завантаження новин...</div>
+      </div>
+    </div>
+
+    <!-- ГОРОСКОП -->
+    <div style="background:rgba(245,243,238,0.07);border-radius:12px;padding:1rem;grid-column:1/-1">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(245,243,238,0.4);margin-bottom:8px">⭐ Гороскоп на сьогодні</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px" id="horoSigns">
+        <button onclick="showHoro(this,'Овен','🐏')" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(245,243,238,0.2);background:transparent;color:rgba(245,243,238,0.6);font-size:11px;cursor:pointer;font-family:'Manrope',sans-serif">🐏 Овен</button>
+        <button onclick="showHoro(this,'Телець','🐂')" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(245,243,238,0.2);background:transparent;color:rgba(245,243,238,0.6);font-size:11px;cursor:pointer;font-family:'Manrope',sans-serif">🐂 Телець</button>
+        <button onclick="showHoro(this,'Близнюки','👥')" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(245,243,238,0.2);background:transparent;color:rgba(245,243,238,0.6);font-size:11px;cursor:pointer;font-family:'Manrope',sans-serif">👥 Близнюки</button>
+        <button onclick="showHoro(this,'Рак','🦀')" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(245,243,238,0.2);background:transparent;color:rgba(245,243,238,0.6);font-size:11px;cursor:pointer;font-family:'Manrope',sans-serif">🦀 Рак</button>
+        <button onclick="showHoro(this,'Лев','🦁')" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(245,243,238,0.2);background:transparent;color:rgba(245,243,238,0.6);font-size:11px;cursor:pointer;font-family:'Manrope',sans-serif">🦁 Лев</button>
+        <button onclick="showHoro(this,'Діва','👧')" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(245,243,238,0.2);background:transparent;color:rgba(245,243,238,0.6);font-size:11px;cursor:pointer;font-family:'Manrope',sans-serif">👧 Діва</button>
+        <button onclick="showHoro(this,'Терези','⚖️')" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(245,243,238,0.2);background:transparent;color:rgba(245,243,238,0.6);font-size:11px;cursor:pointer;font-family:'Manrope',sans-serif">⚖️ Терези</button>
+        <button onclick="showHoro(this,'Скорпіон','🦂')" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(245,243,238,0.2);background:transparent;color:rgba(245,243,238,0.6);font-size:11px;cursor:pointer;font-family:'Manrope',sans-serif">🦂 Скорпіон</button>
+        <button onclick="showHoro(this,'Стрілець','🏹')" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(245,243,238,0.2);background:transparent;color:rgba(245,243,238,0.6);font-size:11px;cursor:pointer;font-family:'Manrope',sans-serif">🏹 Стрілець</button>
+        <button onclick="showHoro(this,'Козоріг','🐐')" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(245,243,238,0.2);background:transparent;color:rgba(245,243,238,0.6);font-size:11px;cursor:pointer;font-family:'Manrope',sans-serif">🐐 Козоріг</button>
+        <button onclick="showHoro(this,'Водолій','🏺')" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(245,243,238,0.2);background:transparent;color:rgba(245,243,238,0.6);font-size:11px;cursor:pointer;font-family:'Manrope',sans-serif">🏺 Водолій</button>
+        <button onclick="showHoro(this,'Риби','🐟')" style="padding:4px 10px;border-radius:20px;border:1px solid rgba(245,243,238,0.2);background:transparent;color:rgba(245,243,238,0.6);font-size:11px;cursor:pointer;font-family:'Manrope',sans-serif">🐟 Риби</button>
+      </div>
+      <div id="horoText" style="font-size:13px;color:rgba(245,243,238,0.7);line-height:1.6;min-height:40px">← Оберіть знак зодіаку</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ПОГОДА
+async function loadWeather(){
+  try{
+    const r=await fetch('https://wttr.in/Zvyagel?format=j1');
+    const d=await r.json();
+    const c=d.current_condition[0];
+    document.getElementById('wTemp').textContent=c.temp_C+'°C';
+    document.getElementById('wDesc').textContent=c.weatherDesc[0].value;
+    document.getElementById('wDetails').innerHTML=`<span>💧 ${c.humidity}%</span><span>💨 ${c.windspeedKmph} км/г</span>`;
+  }catch(e){
+    document.getElementById('wTemp').textContent='';
+    document.getElementById('wDesc').textContent='Недоступно';
+  }
+}
+loadWeather();
+
+// КУРС ВАЛЮТ
+async function loadRates(){
+  try{
+    const r=await fetch('https://api.exchangerate-api.com/v4/latest/UAH');
+    const d=await r.json();
+    const usd=(1/d.rates.USD).toFixed(2);
+    const eur=(1/d.rates.EUR).toFixed(2);
+    document.getElementById('rateUSD').textContent=usd+' ₴';
+    document.getElementById('rateEUR').textContent=eur+' ₴';
+    document.getElementById('rateDate').textContent='Оновлено: '+new Date().toLocaleDateString('uk-UA');
+  }catch(e){
+    document.getElementById('rateUSD').textContent='~42 ₴';
+    document.getElementById('rateEUR').textContent='~46 ₴';
+    document.getElementById('rateDate').textContent='Орієнтовно';
+  }
+}
+loadRates();
+
+// НОВИНИ
+const NEWS=[
+  {t:'Ситуація на фронті: зведення за добу',s:'Генштаб ЗСУ',u:'https://www.mil.gov.ua'},
+  {t:'Погода в Україні на найближчі дні',s:'Укргідрометцентр',u:'https://meteo.gov.ua'},
+  {t:'Курс гривні: НБУ встановив офіційний курс',s:'НБУ',u:'https://bank.gov.ua'},
+  {t:'Новини Житомирської області',s:'Житомир.info',u:'https://zhitomir.info'},
+  {t:'Електроенергія: графіки відключень',s:'Укренерго',u:'https://ua.energy'},
+];
+document.getElementById('newsWidget').innerHTML=NEWS.map(n=>`
+  <a href="${n.u}" target="_blank" style="display:flex;align-items:flex-start;gap:8px;text-decoration:none;padding:6px 0;border-bottom:1px solid rgba(245,243,238,0.06)">
+    <div style="width:4px;height:4px;border-radius:50%;background:#C8F135;flex-shrink:0;margin-top:6px"></div>
+    <div>
+      <div style="font-size:13px;color:rgba(245,243,238,0.85);line-height:1.4">${n.t}</div>
+      <div style="font-size:10px;color:rgba(245,243,238,0.35);margin-top:2px">${n.s}</div>
+    </div>
+  </a>`).join('');
+
+// ГОРОСКОП
+const HORO={
+  'Овен':'Сьогодні чудовий день для нових починань. Ваша енергія на піку — використайте її для важливих рішень. У фінансах будьте обережні.',
+  'Телець':'День сприятливий для домашніх справ та спілкування з близькими. Уникайте великих витрат. Ввечері можливий приємний сюрприз.',
+  'Близнюки':'Активний день для спілкування та нових знайомств. Ваші ідеї знайдуть відгук. Зверніть увагу на здоров\'я — не перевтомлюйтесь.',
+  'Рак':'Інтуїція сьогодні особливо гостра. Довіряйте своїм відчуттям. Вдалий час для сімейних розмов та вирішення побутових питань.',
+  'Лев':'Ваш авторитет сьогодні особливо сильний. День підходить для важливих переговорів. У особистому житті — теплота та взаєморозуміння.',
+  'Діва':'Продуктивний день для роботи та навчання. Деталі мають значення — не поспішайте. Увечері відпочиньте та відновіть сили.',
+  'Терези':'День гармонії та балансу. Вирішуйте суперечки мирно. Творчі проекти принесуть задоволення. Зустріч з цікавою людиною.',
+  'Скорпіон':'Глибокий аналіз ситуацій принесе результати. Не розкривайте своїх планів передчасно. Фінансові питання вирішуються на вашу користь.',
+  'Стрілець':'Оптимізм та позитив — ваші союзники сьогодні. Подорожі та нові враження на часі. Будьте уважні у важливих розмовах.',
+  'Козоріг':'Наполегливість приведе до успіху. День для довгострокового планування. Колеги та партнери готові до співпраці.',
+  'Водолій':'Нестандартні рішення принесуть успіх. Спілкування з однодумцями надихає. Технології та інновації — ваша стихія сьогодні.',
+  'Риби':'День мрій та натхнення. Творчість розквітає. Прислухайтесь до своєї інтуїції — вона не підведе. Уникайте конфліктів.',
+};
+function showHoro(btn,sign,icon){
+  document.querySelectorAll('#horoSigns button').forEach(b=>{
+    b.style.background='transparent';b.style.color='rgba(245,243,238,0.6)';b.style.borderColor='rgba(245,243,238,0.2)';
+  });
+  btn.style.background='#C8F135';btn.style.color='#111';btn.style.borderColor='#C8F135';
+  document.getElementById('horoText').textContent=icon+' '+HORO[sign]||'Незабаром...';
+}
+</script>
+
+<a href="https://novotaxi.online/" target="_blank" class="taxi">
+  <div class="taxi-logo">NOVO<span>TAXI</span></div>
+  <div class="taxi-text">
+    <div class="taxi-title">Таксі у Звягелі — 5 хв подача</div>
+    <div class="taxi-sub">24/7 · 100% місцеві водії · Доступні ціни</div>
+  </div>
+  <div class="taxi-btn">ЗАМОВИТИ</div>
+</a>
+
+<footer>
+  © 2026 zvyagel.online · <a href="mailto:shina.zvyagel@gmail.com">shina.zvyagel@gmail.com</a>
+  <span style="margin-left:1rem"><button onclick="openAdmin()" style="background:transparent;border:none;color:rgba(245,243,238,0.3);font-size:11px;cursor:pointer;font-family:'Manrope',sans-serif">🛡 Адмін</button></span>
+</footer>
+
+<!-- POPUP NOVO TAXI -->
+<div id="popupBanner" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:99999;align-items:center;justify-content:center;padding:1.5rem">
+  <div style="background:#111111;border-radius:16px;width:100%;max-width:400px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5);position:relative;border:2px solid #C8F135">
+    <button onclick="closePopup()" style="position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;border:none;background:rgba(255,255,255,0.1);cursor:pointer;font-size:16px;color:#fff;display:flex;align-items:center;justify-content:center;z-index:1">✕</button>
+    <div style="background:#111111;padding:1.5rem 1.5rem 1rem;text-align:center;border-bottom:3px solid #C8F135">
+      <svg width="120" height="60" viewBox="0 0 120 60" style="margin:0 auto 10px;display:block">
+        <rect x="10" y="20" width="100" height="32" rx="6" fill="#C8F135"/>
+        <rect x="22" y="10" width="76" height="28" rx="5" fill="#C8F135"/>
+        <rect x="28" y="14" width="26" height="20" rx="3" fill="#111" opacity="0.7"/>
+        <rect x="66" y="14" width="26" height="20" rx="3" fill="#111" opacity="0.7"/>
+        <circle cx="32" cy="54" r="10" fill="#222"/><circle cx="32" cy="54" r="6" fill="#444"/><circle cx="32" cy="54" r="3" fill="#C8F135"/>
+        <circle cx="88" cy="54" r="10" fill="#222"/><circle cx="88" cy="54" r="6" fill="#444"/><circle cx="88" cy="54" r="3" fill="#C8F135"/>
+        <rect x="2" y="30" width="10" height="8" rx="2" fill="#C8F135"/>
+        <rect x="108" y="30" width="10" height="8" rx="2" fill="#ff4444"/>
+        <text x="60" y="30" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="6" fill="#C8F135">TAXI</text>
+      </svg>
+      <div style="font-size:11px;font-weight:800;color:#C8F135;letter-spacing:3px;margin-bottom:4px">ЗВЯГЕЛЬ</div>
+      <div style="font-size:20px;font-weight:900;color:#fff;font-family:Arial Black,sans-serif">Таксі у Звягелі</div>
+      <div style="font-size:12px;color:#888;margin-top:4px">Novo Taxi — швидко та надійно</div>
+    </div>
+    <div style="padding:1rem 1.5rem;background:#111111">
+      <div style="display:flex;justify-content:space-around;margin-bottom:0.75rem">
+        <div style="text-align:center"><div style="font-size:18px;font-weight:900;color:#C8F135;font-family:Arial Black,sans-serif">5хв</div><div style="font-size:9px;color:#666;text-transform:uppercase">Подача</div></div>
+        <div style="text-align:center"><div style="font-size:18px;font-weight:900;color:#C8F135;font-family:Arial Black,sans-serif">24/7</div><div style="font-size:9px;color:#666;text-transform:uppercase">Завжди</div></div>
+        <div style="text-align:center"><div style="font-size:18px;font-weight:900;color:#C8F135;font-family:Arial Black,sans-serif">100%</div><div style="font-size:9px;color:#666;text-transform:uppercase">Місцеві</div></div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button onclick="closePopup()" style="flex:1;padding:10px;border-radius:8px;border:1px solid #333;background:transparent;font-size:12px;font-weight:600;cursor:pointer;color:#666;font-family:'Manrope',sans-serif">Пізніше</button>
+        <button onclick="window.open('https://novotaxi.online/','_blank');closePopup()" style="flex:2;padding:10px;border-radius:8px;border:none;background:#C8F135;color:#111;font-size:13px;font-weight:900;cursor:pointer;font-family:Arial Black,sans-serif">ЗАМОВИТИ →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN MODAL -->
+<div id="adminModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:99998;align-items:center;justify-content:center;padding:1.5rem">
+  <div style="background:#fff;border-radius:16px;width:100%;max-width:440px;max-height:85vh;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.3);display:flex;flex-direction:column">
+    <div style="background:#1A1917;padding:1.1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+      <span style="font-size:15px;font-weight:700;color:#F5F3EE;display:flex;align-items:center;gap:8px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Адмін · ZVYAGEL.ONLINE
+      </span>
+      <button onclick="closeAdmin()" style="width:28px;height:28px;border-radius:50%;border:none;background:rgba(255,255,255,0.1);cursor:pointer;color:#fff;font-size:14px">✕</button>
+    </div>
+    <!-- TABS -->
+    <div style="display:flex;border-bottom:1px solid #eee;flex-shrink:0">
+      <button id="admTabSitesBtn" onclick="admTab('sites')" style="flex:1;padding:10px 4px;font-size:11px;font-weight:600;border:none;background:transparent;cursor:pointer;border-bottom:2px solid #1A1917;color:#1A1917;font-family:'Manrope',sans-serif">🌐 Сайти</button>
+      <button id="admTabHelpBtn" onclick="admTab('help')" style="flex:1;padding:10px 4px;font-size:11px;font-weight:600;border:none;background:transparent;cursor:pointer;border-bottom:2px solid transparent;color:#B0ADA5;font-family:'Manrope',sans-serif">📖 Мануал</button>
+    </div>
+    <!-- SITES TAB -->
+    <div id="admTabSites" style="padding:1.25rem;overflow-y:auto">
+      <div style="font-size:12px;color:#7A7770;margin-bottom:1rem">Швидкий перехід до адмінок всіх сайтів мережі</div>
+      <a href="https://shina.zvyagel.online" target="_blank" style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;background:#F5F3EE;border-radius:8px;text-decoration:none;color:#1A1917;margin-bottom:6px;font-size:13px;font-weight:600">🔄 Шини та Диски<span style="font-size:11px;color:#B0ADA5">→</span></a>
+      <a href="https://avto.zvyagel.online" target="_blank" style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;background:#F5F3EE;border-radius:8px;text-decoration:none;color:#1A1917;margin-bottom:6px;font-size:13px;font-weight:600">🚗 Авто<span style="font-size:11px;color:#B0ADA5">→</span></a>
+      <a href="https://nieruhomist.zvyagel.online" target="_blank" style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;background:#F5F3EE;border-radius:8px;text-decoration:none;color:#1A1917;margin-bottom:6px;font-size:13px;font-weight:600">🏠 Нерухомість<span style="font-size:11px;color:#B0ADA5">→</span></a>
+      <a href="https://mebli.zvyagel.online" target="_blank" style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;background:#F5F3EE;border-radius:8px;text-decoration:none;color:#1A1917;margin-bottom:6px;font-size:13px;font-weight:600">🛋️ Меблі та Техніка<span style="font-size:11px;color:#B0ADA5">→</span></a>
+      <a href="https://igrashki.zvyagel.online" target="_blank" style="display:flex;align-items:center;justify-content:space-between;padding:11px 13px;background:#F5F3EE;border-radius:8px;text-decoration:none;color:#1A1917;margin-bottom:6px;font-size:13px;font-weight:600">🧸 Іграшки<span style="font-size:11px;color:#B0ADA5">→</span></a>
+      <div style="margin-top:1rem;padding:10px 13px;background:#FDF3E0;border-radius:8px;font-size:12px;color:#8A5C0A">
+        💡 У кожному сайті є своя адмінка — кнопка "🛡 Адмін" в футері. Пароль: <b>admin123456</b>
+      </div>
+    </div>
+    <!-- HELP TAB -->
+    <div id="admTabHelp" style="display:none;padding:1.25rem;overflow-y:auto;font-size:13px;line-height:1.7;color:#7A7770">
+      <div style="font-size:15px;font-weight:700;color:#1A1917;margin-bottom:1rem">📖 Мануал адміністратора мережі</div>
+
+      <div style="background:#F5F3EE;border-radius:8px;padding:12px 14px;margin-bottom:10px">
+        <div style="font-size:12px;font-weight:700;color:#1A1917;margin-bottom:6px">🌐 Структура мережі</div>
+        <ul style="padding-left:1.1rem;display:flex;flex-direction:column;gap:3px;font-size:12px">
+          <li><b>zvyagel.online</b> — головний портал (цей сайт)</li>
+          <li><b>shina.zvyagel.online</b> — шини, диски, СТО</li>
+          <li><b>avto.zvyagel.online</b> — купівля/продаж авто</li>
+          <li><b>nieruhomist.zvyagel.online</b> — нерухомість</li>
+          <li><b>mebli.zvyagel.online</b> — меблі та техніка</li>
+          <li><b>igrashki.zvyagel.online</b> — дитячі товари</li>
+        </ul>
+      </div>
+
+      <div style="background:#EAF4EE;border-radius:8px;padding:12px 14px;margin-bottom:10px">
+        <div style="font-size:12px;font-weight:700;color:#0F6E56;margin-bottom:6px">💳 Як приймати оплату (всі сайти)</div>
+        <ol style="padding-left:1.1rem;display:flex;flex-direction:column;gap:4px;color:#0F6E56;font-size:12px">
+          <li>Клієнт натискає "Поповнити" → обирає суму</li>
+          <li>На пошту <b>ckbbuild@gmail.com</b> приходить заявка</li>
+          <li>Ви надсилаєте IBAN в SMS/Viber клієнту</li>
+          <li>Клієнт оплачує → зайдіть в адмінку сайту</li>
+          <li>Вкладка <b>"Заявки"</b> → знайдіть → <b>"Зарахувати"</b></li>
+        </ol>
+        <div style="margin-top:8px;padding:6px 10px;background:rgba(46,110,71,0.1);border-radius:6px;font-size:11px;color:#3B6D11">⚠️ Не зараховуйте до отримання реальної оплати!</div>
+      </div>
+
+      <div style="background:#F5F3EE;border-radius:8px;padding:12px 14px;margin-bottom:10px">
+        <div style="font-size:12px;font-weight:700;color:#1A1917;margin-bottom:6px">⚙️ Адмінка кожного сайту має:</div>
+        <ul style="padding-left:1.1rem;display:flex;flex-direction:column;gap:3px;font-size:12px">
+          <li><b>👥 Клієнти</b> — зарахувати баланс, заблокувати</li>
+          <li><b>📋 Заявки</b> — підтвердити поповнення</li>
+          <li><b>📢 Оголошення</b> — видалити порушення</li>
+          <li><b>💰 Ціни</b> — змінити вартість публікації</li>
+          <li><b>📖 Мануал</b> — детальна інструкція</li>
+        </ul>
+      </div>
+
+      <div style="background:#FDF3E0;border-radius:8px;padding:12px 14px;margin-bottom:10px">
+        <div style="font-size:12px;font-weight:700;color:#8A5C0A;margin-bottom:6px">🔐 Паролі та доступ</div>
+        <ul style="padding-left:1.1rem;font-size:12px;color:#8A5C0A;display:flex;flex-direction:column;gap:3px">
+          <li>Пароль адмінки всіх сайтів: <b>admin123456</b></li>
+          <li>Змінити пароль — в коді кожного сайту (рядок ADMIN_PASS)</li>
+          <li>Firebase проект: <b>shina-zvyagel</b></li>
+          <li>GitHub акаунт: <b>garybuzz9999</b></li>
+          <li>Домен: <b>zvyagel.online</b> (Namecheap)</li>
+        </ul>
+      </div>
+
+      <div style="font-size:11px;color:#B0ADA5;text-align:center">ZVYAGEL.ONLINE · Мережа локальних майданчиків · 2026</div>
+    </div>
+  </div>
+</div>
+
+<script>
+function admTab(tab){
+  document.getElementById('admTabSites').style.display=tab==='sites'?'block':'none';
+  document.getElementById('admTabHelp').style.display=tab==='help'?'block':'none';
+  document.getElementById('admTabSitesBtn').style.borderBottomColor=tab==='sites'?'#1A1917':'transparent';
+  document.getElementById('admTabSitesBtn').style.color=tab==='sites'?'#1A1917':'#B0ADA5';
+  document.getElementById('admTabHelpBtn').style.borderBottomColor=tab==='help'?'#1A1917':'transparent';
+  document.getElementById('admTabHelpBtn').style.color=tab==='help'?'#1A1917':'#B0ADA5';
+}
+let _popupTimer;
+function closePopup(){
+  document.getElementById('popupBanner').style.display='none';
+  clearTimeout(_popupTimer);
+  _popupTimer=setTimeout(()=>document.getElementById('popupBanner').style.display='flex',5*60*1000);
+}
+setTimeout(()=>document.getElementById('popupBanner').style.display='flex',3000);
+const ADMIN_PASS='admin123456';
+function openAdmin(){
+  const p=prompt('Пароль:');
+  if(p===ADMIN_PASS)document.getElementById('adminModal').style.display='flex';
+  else if(p!==null)alert('Невірний пароль');
+}
+function closeAdmin(){document.getElementById('adminModal').style.display='none';}
+</script>
+
+</body>
+</html>
