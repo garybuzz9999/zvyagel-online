@@ -563,7 +563,16 @@ function applyPopupSettings(s) {
   popup.style.display = 'none';
   if (!s.active || !s.image) return;
   const img = popup.querySelector('img');
-  if (img) img.src = s.image;
+  if (img) {
+    img.src = s.image;
+    if (s.link) {
+      img.style.cursor = 'pointer';
+      img.onclick = function() { window.open(s.link, '_blank'); closePopup(); };
+    } else {
+      img.style.cursor = 'default';
+      img.onclick = null;
+    }
+  }
   window._popupAdminTimer = setTimeout(() => { popup.style.display = 'flex'; }, s.delay);
 }
 (function() {
