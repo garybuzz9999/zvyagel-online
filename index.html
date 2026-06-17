@@ -8,8 +8,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Manrope',sans-serif;background:#F5F3EE;color:#1A1917;min-height:100vh}
-  header{background:#1A1917;padding:0 1.5rem;height:80px;display:flex;align-items:center;justify-content:space-between}
+  body{font-family:'Manrope',sans-serif;background:#F5F3EE;color:#1A1917;min-height:100vh;overflow-x:hidden}
+  header{background:#1A1917;padding:0 1.5rem;height:80px;display:flex;align-items:center;justify-content:space-between;overflow:hidden}
   .logo{font-family:'Unbounded',sans-serif;font-size:18px;font-weight:700;color:#F5F3EE;letter-spacing:-0.02em}
   .logo span{color:#C8F135}
   .hero{background:#1A1917;padding:3rem 1.5rem 2.5rem;text-align:center}
@@ -52,8 +52,8 @@
   </div>
 </header>
 
-<div class="hero" style="padding:2rem 1rem">
-  <div style="display:flex;align-items:center;justify-content:center;gap:12px">
+<div class="hero" style="padding:2rem 1rem;overflow:hidden">
+  <div style="display:flex;align-items:center;justify-content:center;gap:12px;width:100%;max-width:600px;margin:0 auto">
 
     <!-- БАНЕР ЛІВИЙ -->
     <a href="https://novotaxi.online/" target="_blank" style="flex-shrink:0;width:117px;background:#111;border:2px solid #C8F135;border-radius:12px;padding:14px 8px;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:5px">
