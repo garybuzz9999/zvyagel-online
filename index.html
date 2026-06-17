@@ -33,7 +33,7 @@
   .taxi-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:3px}
   .taxi-sub{font-size:12px;color:#888}
   .taxi-btn{background:#C8F135;color:#111;font-size:12px;font-weight:900;padding:8px 14px;border-radius:8px;font-family:'Unbounded',sans-serif;white-space:nowrap}
-  footer{background:#1A1917;color:rgba(245,243,238,0.4);padding:1.25rem 1.5rem;font-size:12px;text-align:center}
+  footer{background:#1A1917;color:rgba(245,243,238,0.4);padding:2rem 1.5rem 2.5rem;font-size:13px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:0.75rem}
   footer a{color:rgba(245,243,238,0.4);text-decoration:none}
   @media(max-width:480px){
     .hero h1{font-size:22px}
@@ -305,8 +305,12 @@ function showHoro(btn,sign,icon){
 </a>
 
 <footer>
-  © 2026 zvyagel.online · <a href="mailto:shina.zvyagel@gmail.com">shina.zvyagel@gmail.com</a>
-  <span style="margin-left:1rem"><button onclick="openAdmin()" style="background:transparent;border:none;color:rgba(245,243,238,0.3);font-size:11px;cursor:pointer;font-family:'Manrope',sans-serif">🛡 Адмін</button></span>
+  <div style="color:rgba(245,243,238,0.6);font-size:13px">© 2026 <b style="color:rgba(245,243,238,0.85)">zvyagel.online</b></div>
+  <div><a href="mailto:shina.zvyagel@gmail.com" style="color:rgba(245,243,238,0.45);font-size:12px">shina.zvyagel@gmail.com</a></div>
+  <div style="display:flex;gap:1rem;margin-top:0.5rem">
+    <button onclick="openAdmin()" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(245,243,238,0.5);font-size:12px;cursor:pointer;font-family:'Manrope',sans-serif;padding:7px 16px;border-radius:8px">🛡 Адмін</button>
+    <button onclick="openPopupAdmin()" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(245,243,238,0.5);font-size:12px;cursor:pointer;font-family:'Manrope',sans-serif;padding:7px 16px;border-radius:8px">🖼 Банер</button>
+  </div>
 </footer>
 
 <!-- POPUP NOVO TAXI -->
@@ -422,6 +426,152 @@ function openAdmin(){
   else if(p!==null)alert('Невірний пароль');
 }
 function closeAdmin(){document.getElementById('adminModal').style.display='none';}
+</script>
+
+
+<!-- POPUP ADMIN MODAL -->
+<div id="popupAdminModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:99999;align-items:center;justify-content:center;padding:1.5rem">
+  <div style="background:#fff;border-radius:16px;width:100%;max-width:420px;max-height:90vh;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.3);display:flex;flex-direction:column">
+    <div style="background:#1A1917;padding:1.1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+      <span style="font-size:15px;font-weight:700;color:#F5F3EE;display:flex;align-items:center;gap:8px">🖼 Керування банером</span>
+      <button onclick="closePopupAdmin()" style="width:28px;height:28px;border-radius:50%;border:none;background:rgba(255,255,255,0.1);cursor:pointer;color:#fff;font-size:14px">✕</button>
+    </div>
+    <div style="padding:1.25rem;overflow-y:auto;display:flex;flex-direction:column;gap:1rem">
+
+      <!-- STATUS TOGGLE -->
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:#F5F3EE;border-radius:10px">
+        <span style="font-size:13px;font-weight:600;color:#1A1917">Банер активний</span>
+        <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer">
+          <input type="checkbox" id="popupToggle" checked onchange="togglePopupActive(this.checked)" style="opacity:0;width:0;height:0;position:absolute">
+          <span id="popupToggleTrack" style="position:absolute;inset:0;background:#ccc;border-radius:24px;transition:.3s">
+            <span id="popupToggleKnob" style="position:absolute;height:18px;width:18px;left:3px;bottom:3px;background:white;border-radius:50%;transition:.3s"></span>
+          </span>
+        </label>
+      </div>
+
+      <!-- PREVIEW -->
+      <div style="text-align:center">
+        <div style="font-size:11px;font-weight:700;color:#B0ADA5;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Поточне зображення</div>
+        <img id="popupPreviewImg" src="" alt="preview" style="width:100%;max-height:220px;object-fit:contain;border-radius:10px;background:#F5F3EE;display:none" />
+        <div id="popupNoImg" style="padding:2rem;background:#F5F3EE;border-radius:10px;color:#B0ADA5;font-size:12px">Зображення відсутнє</div>
+      </div>
+
+      <!-- UPLOAD -->
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#B0ADA5;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Завантажити нове фото</div>
+        <label id="uploadLabel" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border:2px dashed #ddd;border-radius:10px;cursor:pointer;font-size:13px;color:#7A7770;background:#FAFAF9;transition:.2s">
+          📁 Обрати файл (JPG, PNG)
+          <input type="file" accept="image/*" onchange="loadPopupImage(this)" style="display:none">
+        </label>
+      </div>
+
+      <!-- LINK -->
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#B0ADA5;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Посилання (куди веде клік)</div>
+        <input id="popupLinkInput" type="url" placeholder="https://..." style="width:100%;padding:10px 12px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:Manrope,sans-serif;box-sizing:border-box;outline:none">
+        <div style="font-size:11px;color:#B0ADA5;margin-top:4px">Порожнє — клік просто закриє банер</div>
+      </div>
+
+      <!-- DELAY -->
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#B0ADA5;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Затримка появи: <span id="delayLabel">3</span> сек</div>
+        <input type="range" id="popupDelayInput" min="1" max="30" value="3" oninput="document.getElementById('delayLabel').textContent=this.value" style="width:100%;accent-color:#1A1917">
+      </div>
+
+      <!-- DELETE -->
+      <div style="padding:12px 14px;background:#FFF0F0;border-radius:10px;display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:12px;color:#c0392b;font-weight:600">Видалити зображення</span>
+        <button onclick="deletePopupImage()" style="padding:7px 14px;background:#c0392b;color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer">Видалити</button>
+      </div>
+
+      <!-- SAVE -->
+      <button onclick="savePopupSettings()" style="padding:13px;background:#1A1917;color:#F5F3EE;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;width:100%">💾 Зберегти</button>
+      <div id="popupSaveMsg" style="display:none;text-align:center;font-size:12px;color:#0F6E56;font-weight:600">✅ Збережено!</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const POPUP_ADMIN_PASS = 'popup2026';
+
+function openPopupAdmin() {
+  const p = prompt('Пароль банер-адмінки:');
+  if (p === null) return;
+  if (p !== POPUP_ADMIN_PASS) { alert('Невірний пароль'); return; }
+  initPopupAdmin();
+  document.getElementById('popupAdminModal').style.display = 'flex';
+}
+function closePopupAdmin() {
+  document.getElementById('popupAdminModal').style.display = 'none';
+}
+function initPopupAdmin() {
+  const s = getPopupSettings();
+  document.getElementById('popupToggle').checked = s.active;
+  updateToggleUI(s.active);
+  updatePreview(s.image);
+  document.getElementById('popupLinkInput').value = s.link || '';
+  const d = Math.round((s.delay || 3000) / 1000);
+  document.getElementById('popupDelayInput').value = d;
+  document.getElementById('delayLabel').textContent = d;
+}
+function getPopupSettings() {
+  try {
+    const s = localStorage.getItem('popupSettings');
+    if (s) return JSON.parse(s);
+  } catch(e) {}
+  const img = document.querySelector('#popupBanner img');
+  return { active: true, image: img ? img.src : '', link: '', delay: 3000 };
+}
+function updatePreview(src) {
+  const img = document.getElementById('popupPreviewImg');
+  const noImg = document.getElementById('popupNoImg');
+  if (src) { img.src = src; img.style.display = 'block'; noImg.style.display = 'none'; }
+  else { img.style.display = 'none'; noImg.style.display = 'block'; }
+}
+function updateToggleUI(active) {
+  document.getElementById('popupToggleTrack').style.background = active ? '#1A1917' : '#ccc';
+  document.getElementById('popupToggleKnob').style.transform = active ? 'translateX(20px)' : 'translateX(0)';
+}
+function togglePopupActive(active) { updateToggleUI(active); }
+function loadPopupImage(input) {
+  const file = input.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) { window._newPopupImage = e.target.result; updatePreview(e.target.result); };
+  reader.readAsDataURL(file);
+}
+function deletePopupImage() {
+  if (!confirm('Видалити зображення? Банер буде вимкнено.')) return;
+  window._newPopupImage = '';
+  updatePreview('');
+  document.getElementById('popupToggle').checked = false;
+  updateToggleUI(false);
+}
+function savePopupSettings() {
+  const s = getPopupSettings();
+  s.active = document.getElementById('popupToggle').checked;
+  s.link = document.getElementById('popupLinkInput').value.trim();
+  s.delay = parseInt(document.getElementById('popupDelayInput').value) * 1000;
+  if (window._newPopupImage !== undefined) { s.image = window._newPopupImage; window._newPopupImage = undefined; }
+  localStorage.setItem('popupSettings', JSON.stringify(s));
+  applyPopupSettings(s);
+  document.getElementById('popupSaveMsg').style.display = 'block';
+  setTimeout(() => document.getElementById('popupSaveMsg').style.display = 'none', 2000);
+}
+function applyPopupSettings(s) {
+  const popup = document.getElementById('popupBanner');
+  clearTimeout(window._popupAdminTimer);
+  popup.style.display = 'none';
+  if (!s.active || !s.image) return;
+  const img = popup.querySelector('img');
+  if (img) img.src = s.image;
+  window._popupAdminTimer = setTimeout(() => { popup.style.display = 'flex'; }, s.delay);
+}
+(function() {
+  try {
+    const s = localStorage.getItem('popupSettings');
+    if (s) applyPopupSettings(JSON.parse(s));
+  } catch(e) {}
+})();
 </script>
 
 </body>
