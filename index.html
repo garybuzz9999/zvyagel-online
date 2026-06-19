@@ -506,6 +506,7 @@ function closeAdmin(){document.getElementById('adminModal').style.display='none'
       <!-- SAVE -->
       <button onclick="savePopupSettings()" style="padding:13px;background:#1A1917;color:#F5F3EE;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;width:100%">💾 Зберегти</button>
       <div id="popupSaveMsg" style="display:none;text-align:center;font-size:12px;color:#0F6E56;font-weight:600">✅ Збережено!</div>
+      <div style="text-align:center;font-size:11px;color:#B0ADA5">Рекомендований розмір: 600×800px, до 200КБ (JPG)</div>
     </div>
 
     <!-- BANNERS TAB -->
@@ -522,6 +523,7 @@ function closeAdmin(){document.getElementById('adminModal').style.display='none'
           📁 Обрати файл
           <input type="file" accept="image/*" onchange="loadBannerImage(this,'bannerLeft')" style="display:none">
         </label>
+        <div style="text-align:center;font-size:10px;color:#B0ADA5">~90×120px, до 50КБ</div>
         <input id="bannerLeftLinkInput" type="url" placeholder="https://..." style="width:100%;padding:9px 10px;border:1px solid #ddd;border-radius:8px;font-size:12px;font-family:Manrope,sans-serif;box-sizing:border-box;outline:none">
         <button onclick="deleteBannerImage('bannerLeft')" style="padding:6px;background:#FFF0F0;color:#c0392b;border:none;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer">Видалити картинку</button>
       </div>
@@ -535,6 +537,7 @@ function closeAdmin(){document.getElementById('adminModal').style.display='none'
           📁 Обрати файл
           <input type="file" accept="image/*" onchange="loadBannerImage(this,'bannerRight')" style="display:none">
         </label>
+        <div style="text-align:center;font-size:10px;color:#B0ADA5">~90×120px, до 50КБ</div>
         <input id="bannerRightLinkInput" type="url" placeholder="https://..." style="width:100%;padding:9px 10px;border:1px solid #ddd;border-radius:8px;font-size:12px;font-family:Manrope,sans-serif;box-sizing:border-box;outline:none">
         <button onclick="deleteBannerImage('bannerRight')" style="padding:6px;background:#FFF0F0;color:#c0392b;border:none;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer">Видалити картинку</button>
       </div>
@@ -548,6 +551,7 @@ function closeAdmin(){document.getElementById('adminModal').style.display='none'
           📁 Обрати файл
           <input type="file" accept="image/*" onchange="loadBannerImage(this,'bannerBottom')" style="display:none">
         </label>
+        <div style="text-align:center;font-size:10px;color:#B0ADA5">~700×140px, до 100КБ</div>
         <input id="bannerBottomLinkInput" type="url" placeholder="https://..." style="width:100%;padding:9px 10px;border:1px solid #ddd;border-radius:8px;font-size:12px;font-family:Manrope,sans-serif;box-sizing:border-box;outline:none">
         <button onclick="deleteBannerImage('bannerBottom')" style="padding:6px;background:#FFF0F0;color:#c0392b;border:none;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer">Видалити картинку</button>
       </div>
