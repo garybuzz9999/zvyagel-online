@@ -70,7 +70,7 @@
   <div style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;max-width:100%;margin:0 auto;padding:0 4px;box-sizing:border-box">
 
     <!-- БАНЕР ЛІВИЙ -->
-    <a id="bannerLeft" href="https://novotaxi.online/" target="_blank" style="flex-shrink:0;width:28%;min-width:80px;max-width:110px;background:#111;border:2px solid #C8F135;border-radius:12px;padding:14px 8px;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:5px">
+    <a id="bannerLeft" href="https://novotaxi.online/" target="_blank" style="flex-shrink:0;width:28%;min-width:80px;max-width:110px;background:#111;border:2px solid #C8F135;border-radius:12px;padding:14px 8px;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:5px;opacity:0;transition:opacity .2s">
       <svg width="46" height="22" viewBox="0 0 120 60">
         <rect x="10" y="20" width="100" height="32" rx="6" fill="#C8F135"/>
         <rect x="22" y="10" width="76" height="28" rx="5" fill="#C8F135"/>
@@ -90,7 +90,7 @@
     </div>
 
     <!-- БАНЕР ПРАВИЙ -->
-    <a id="bannerRight" href="https://novotaxi.online/" target="_blank" style="flex-shrink:0;width:28%;min-width:80px;max-width:110px;background:#111;border:2px solid #C8F135;border-radius:12px;padding:14px 8px;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:5px">
+    <a id="bannerRight" href="https://novotaxi.online/" target="_blank" style="flex-shrink:0;width:28%;min-width:80px;max-width:110px;background:#111;border:2px solid #C8F135;border-radius:12px;padding:14px 8px;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:5px;opacity:0;transition:opacity .2s">
       <svg width="46" height="22" viewBox="0 0 120 60">
         <rect x="10" y="20" width="100" height="32" rx="6" fill="#C8F135"/>
         <rect x="22" y="10" width="76" height="28" rx="5" fill="#C8F135"/>
@@ -309,7 +309,7 @@ function showHoro(btn,sign,icon){
 }
 </script>
 
-<a id="bannerBottom" href="https://novotaxi.online/" target="_blank" class="taxi">
+<a id="bannerBottom" href="https://novotaxi.online/" target="_blank" class="taxi" style="opacity:0;transition:opacity .2s">
   <div class="taxi-logo">NOVO<span>TAXI</span></div>
   <div class="taxi-text">
     <div class="taxi-title">Таксі у Звягелі — 5 хв подача</div>
@@ -593,6 +593,9 @@ function loadAdsConfig(){
   }).catch(e=>{
     console.error('Не вдалося завантажити рекламу з Firebase', e);
     _adsConfig = JSON.parse(JSON.stringify(DEFAULT_ADS));
+    applyBannerToDom('bannerLeft');
+    applyBannerToDom('bannerRight');
+    applyBannerToDom('bannerBottom');
   });
 }
 
@@ -606,6 +609,7 @@ function applyBannerToDom(key){
   } else if (_defaultBannerHTML[key] !== undefined) {
     el.innerHTML = _defaultBannerHTML[key];
   }
+  el.style.opacity = '1';
 }
 
 function applyPopupSettings(s) {
