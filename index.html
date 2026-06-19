@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
 <script>
   const firebaseConfig = {
     apiKey: "AIzaSyDrtZhY-HP9HPoTZupa5VqkxW6I7_0W9Rg",
@@ -20,7 +19,6 @@
   };
   firebase.initializeApp(firebaseConfig);
   const adsDb = firebase.firestore();
-  const adsStorage = firebase.storage();
 </script>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -504,7 +502,7 @@ function closeAdmin(){document.getElementById('adminModal').style.display='none'
       </div>
 
       <!-- SAVE -->
-      <button onclick="savePopupSettings()" style="padding:13px;background:#1A1917;color:#F5F3EE;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;width:100%">💾 Зберегти</button>
+      <button onclick="savePopupSettings(event)" style="padding:13px;background:#1A1917;color:#F5F3EE;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;width:100%">💾 Зберегти</button>
       <div id="popupSaveMsg" style="display:none;text-align:center;font-size:12px;color:#0F6E56;font-weight:600">✅ Збережено!</div>
       <div style="text-align:center;font-size:11px;color:#B0ADA5">Рекомендований розмір: 600×800px, до 200КБ (JPG)</div>
     </div>
@@ -556,7 +554,7 @@ function closeAdmin(){document.getElementById('adminModal').style.display='none'
         <button onclick="deleteBannerImage('bannerBottom')" style="padding:6px;background:#FFF0F0;color:#c0392b;border:none;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer">Видалити картинку</button>
       </div>
 
-      <button onclick="saveBannerSettings()" style="padding:13px;background:#1A1917;color:#F5F3EE;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;width:100%">💾 Зберегти банери</button>
+      <button onclick="saveBannerSettings(event)" style="padding:13px;background:#1A1917;color:#F5F3EE;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;width:100%">💾 Зберегти банери</button>
       <div id="bannerSaveMsg" style="display:none;text-align:center;font-size:12px;color:#0F6E56;font-weight:600">✅ Збережено!</div>
     </div>
   </div>
@@ -680,39 +678,33 @@ function updateToggleUI(active) {
 function togglePopupActive(active) { updateToggleUI(active); }
 function loadPopupImage(input) {
   const file = input.files[0]; if (!file) return;
-  window._newPopupFile = file;
   const reader = new FileReader();
-  reader.onload = function(e) { updatePreview(e.target.result); };
+  reader.onload = function(e) { window._newPopupImage = e.target.result; updatePreview(e.target.result); };
   reader.readAsDataURL(file);
 }
 function deletePopupImage() {
   if (!confirm('Видалити зображення? Попап буде вимкнено.')) return;
-  window._newPopupFile = null;
+  window._newPopupImage = null;
   window._popupImageDeleted = true;
   updatePreview('');
   document.getElementById('popupToggle').checked = false;
   updateToggleUI(false);
 }
-function uploadAdImage(slotKey, file){
-  const ref = adsStorage.ref().child('zvyagel-online-main/'+slotKey);
-  return ref.put(file).then(()=>ref.getDownloadURL());
-}
-function savePopupSettings() {
+function savePopupSettings(event) {
   const btn = event.target;
   btn.disabled = true; btn.textContent = '⏳ Збереження...';
   const s = Object.assign({}, _adsConfig.popup);
   s.active = document.getElementById('popupToggle').checked;
   s.link = document.getElementById('popupLinkInput').value.trim();
   s.delay = parseInt(document.getElementById('popupDelayInput').value) * 1000;
-  let uploadPromise = Promise.resolve();
-  if (window._newPopupFile) {
-    uploadPromise = uploadAdImage('popup', window._newPopupFile).then(url => { s.imageUrl = url; });
+  if (window._newPopupImage) {
+    s.imageUrl = window._newPopupImage;
   } else if (window._popupImageDeleted) {
     s.imageUrl = '';
   }
-  uploadPromise.then(()=> ADS_DOC_REF.set({ popup: s }, { merge: true })).then(()=>{
+  ADS_DOC_REF.set({ popup: s }, { merge: true }).then(()=>{
     _adsConfig.popup = s;
-    window._newPopupFile = null;
+    window._newPopupImage = null;
     window._popupImageDeleted = false;
     applyPopupSettings(s);
     btn.disabled = false; btn.textContent = '💾 Зберегти';
@@ -721,7 +713,7 @@ function savePopupSettings() {
   }).catch(e=>{
     console.error(e);
     btn.disabled = false; btn.textContent = '💾 Зберегти';
-    alert('Помилка збереження. Перевірте права доступу Firestore/Storage.');
+    alert('Помилка збереження: '+(e&&e.message?e.message:'невідома')+'. Спробуй менший файл (KB) або перевір правила Firestore.');
   });
 }
 
@@ -731,7 +723,7 @@ function initBannersAdminForm(){
     const cfg = _adsConfig[key];
     document.getElementById(key+'LinkInput').value = cfg.link || '';
     updateBannerPreview(key, cfg.imageUrl);
-    window['_new'+key+'File'] = null;
+    window['_new'+key+'Image'] = null;
     window['_'+key+'ImageDeleted'] = false;
   });
 }
@@ -743,39 +735,34 @@ function updateBannerPreview(key, src){
 }
 function loadBannerImage(input, key){
   const file = input.files[0]; if (!file) return;
-  window['_new'+key+'File'] = file;
   window['_'+key+'ImageDeleted'] = false;
   const reader = new FileReader();
-  reader.onload = function(e){ updateBannerPreview(key, e.target.result); };
+  reader.onload = function(e){ window['_new'+key+'Image'] = e.target.result; updateBannerPreview(key, e.target.result); };
   reader.readAsDataURL(file);
 }
 function deleteBannerImage(key){
   if (!confirm('Видалити картинку? Повернеться стандартний банер.')) return;
-  window['_new'+key+'File'] = null;
+  window['_new'+key+'Image'] = null;
   window['_'+key+'ImageDeleted'] = true;
   updateBannerPreview(key, '');
 }
-function saveBannerSettings(){
+function saveBannerSettings(event){
   const btn = event.target;
   btn.disabled = true; btn.textContent = '⏳ Збереження...';
   const updates = {};
-  const uploads = BANNER_KEYS.map(key=>{
+  BANNER_KEYS.forEach(key=>{
     const cfg = Object.assign({}, _adsConfig[key]);
     cfg.link = document.getElementById(key+'LinkInput').value.trim();
-    const file = window['_new'+key+'File'];
+    const img = window['_new'+key+'Image'];
     const deleted = window['_'+key+'ImageDeleted'];
-    let p = Promise.resolve();
-    if (file) {
-      p = uploadAdImage(key, file).then(url => { cfg.imageUrl = url; });
-    } else if (deleted) {
-      cfg.imageUrl = '';
-    }
-    return p.then(()=>{ updates[key] = cfg; });
+    if (img) cfg.imageUrl = img;
+    else if (deleted) cfg.imageUrl = '';
+    updates[key] = cfg;
   });
-  Promise.all(uploads).then(()=> ADS_DOC_REF.set(updates, { merge: true })).then(()=>{
+  ADS_DOC_REF.set(updates, { merge: true }).then(()=>{
     BANNER_KEYS.forEach(key=>{
       _adsConfig[key] = updates[key];
-      window['_new'+key+'File'] = null;
+      window['_new'+key+'Image'] = null;
       window['_'+key+'ImageDeleted'] = false;
       applyBannerToDom(key);
     });
@@ -785,9 +772,10 @@ function saveBannerSettings(){
   }).catch(e=>{
     console.error(e);
     btn.disabled = false; btn.textContent = '💾 Зберегти банери';
-    alert('Помилка збереження. Перевірте права доступу Firestore/Storage.');
+    alert('Помилка збереження: '+(e&&e.message?e.message:'невідома')+'. Спробуй менший файл (KB) або перевір правила Firestore.');
   });
 }
+
 </script>
 
 </body>
