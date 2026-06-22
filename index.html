@@ -321,11 +321,38 @@ function showHoro(btn,sign,icon){
 <footer>
   <div style="color:rgba(245,243,238,0.6);font-size:13px">© 2026 <b style="color:rgba(245,243,238,0.85)">zvyagel.online</b></div>
   <div><a href="mailto:shina.zvyagel@gmail.com" style="color:rgba(245,243,238,0.45);font-size:12px">shina.zvyagel@gmail.com</a></div>
-  <div style="display:flex;gap:1rem;margin-top:0.5rem">
+  <div style="display:flex;gap:1rem;margin-top:0.5rem;flex-wrap:wrap;justify-content:center">
     <button onclick="openAdmin()" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(245,243,238,0.5);font-size:12px;cursor:pointer;font-family:'Manrope',sans-serif;padding:7px 16px;border-radius:8px">🛡 Адмін</button>
-    <button onclick="openPopupAdmin()" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(245,243,238,0.5);font-size:12px;cursor:pointer;font-family:'Manrope',sans-serif;padding:7px 16px;border-radius:8px">📢 Реклама</button>
+    <a href="mailto:shina.zvyagel@gmail.com" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(245,243,238,0.5);font-size:12px;cursor:pointer;font-family:'Manrope',sans-serif;padding:7px 16px;border-radius:8px;text-decoration:none">📢 Реклама</a>
+    <button onclick="openTerms()" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(245,243,238,0.5);font-size:12px;cursor:pointer;font-family:'Manrope',sans-serif;padding:7px 16px;border-radius:8px">📄 Умови використання</button>
   </div>
 </footer>
+
+<!-- УМОВИ ВИКОРИСТАННЯ -->
+<div id="termsModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:99999;align-items:center;justify-content:center;padding:1.5rem" onclick="if(event.target===this)closeTerms()">
+  <div style="background:var(--bg-card,#fff);border-radius:16px;width:100%;max-width:480px;max-height:85vh;overflow-y:auto;padding:1.5rem;position:relative">
+    <button onclick="closeTerms()" style="position:absolute;top:12px;right:12px;background:transparent;border:none;font-size:22px;cursor:pointer;color:var(--text-muted,#888)">✕</button>
+    <h2 style="font-size:16px;font-weight:800;font-family:'Unbounded',sans-serif;margin-bottom:1rem">Умови використання</h2>
+    <div style="font-size:13px;line-height:1.7;color:var(--text,#1a1a1a)">
+      <p><b>1. Загальні положення</b><br>
+      Портал zvyagel.online — безкоштовний місцевий сервіс для розміщення оголошень жителів міста Звягель та Новоград-Волинського району. Використовуючи сайт, ви погоджуєтесь з цими умовами.</p>
+      <p><b>2. Правила розміщення оголошень</b><br>
+      Забороняється розміщувати: оголошення з недостовірною інформацією; товари або послуги, що порушують законодавство України; образливий, нецензурний або дискримінаційний контент; спам та дублікати оголошень.</p>
+      <p><b>3. Права адміністрації</b><br>
+      Адміністрація порталу залишає за собою право без попередження видаляти будь-які оголошення на власний розсуд у разі порушення правил сайту або за скаргою користувачів. Адміністрація не зобов'язана пояснювати причини видалення.</p>
+      <p><b>4. Відповідальність</b><br>
+      Портал не несе відповідальності за зміст оголошень, достовірність інформації та угоди між користувачами. Всі угоди між продавцем та покупцем здійснюються на їх власний ризик.</p>
+      <p><b>5. Реклама</b><br>
+      З питань розміщення реклами звертайтесь на пошту: <a href="mailto:shina.zvyagel@gmail.com" style="color:var(--accent,#FF6B35)">shina.zvyagel@gmail.com</a></p>
+      <p><b>6. Зміни умов</b><br>
+      Адміністрація може змінювати умови використання без попереднього повідомлення. Актуальна версія завжди доступна на сайті.</p>
+    </div>
+  </div>
+</div>
+<script>
+function openTerms(){const m=document.getElementById('termsModal');m.style.display='flex';}
+function closeTerms(){const m=document.getElementById('termsModal');m.style.display='none';}
+</script>
 
 <!-- POPUP NOVO TAXI -->
 <div id="popupBanner" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:99999;align-items:center;justify-content:center;padding:1.5rem">
